@@ -11,8 +11,6 @@ HercDJCompact.init = function(id) {
     this.searchMode = false;
     this.shiftPressed = false;
 
-    engine.connectControl("[Recording]", "status", "HercDJCompact.OnRecordingStatusChange");
-
     // Tell controller to send midi to update knob and slider positions.
     midi.sendShortMsg(0xB0, 0x7F, 0x7F);
 
@@ -66,8 +64,10 @@ HercDJCompact.recToggle = function(group, control, value, status) {
         this.searchMode = !this.searchMode;
         if (this.searchMode) {
             print("Entering search mode");
+            midi.sendShortMsg(0x90, 0x2B, 0x7F); // Turn on LED for search mode
         } else {
             print("Exiting search mode");
+            midi.sendShortMsg(0x90, 0x2B, 0x0); // Turn off LED for search mode
         }
     }
 };
@@ -138,6 +138,7 @@ HercDJCompact.cue = function(group, control, value, status) {
         // Exit search mode after loading the track
         this.searchMode = false;
         print("Exiting search mode");
+        midi.sendShortMsg(0x90, 0x2B, 0x0); // Turn off LED for search mode
     } else if (value > 0 && this.shiftPressed) {
         print("Setting cue point, group: " + group);
         engine.setValue(group, "cue_default", value);
@@ -171,15 +172,4 @@ HercDJCompact.pitch = function(group, control, value, status) {
         pitch = -1.0;
     }
     engine.setValue(input.group, "rate", pitch);
-};
-
-HercDJCompact.OnRecordingStatusChange = function(value, group, control) {
-    // Not sure why this doesn't work with a regular midi output in the xml.
-    if (value == 2) {
-        midi.sendShortMsg(0x90, 0x2B, 0x7F);
-        midi.sendShortMsg(0x90, 0x2C, 0x7F);
-    } else {
-        midi.sendShortMsg(0x90, 0x2B, 0x0);
-        midi.sendShortMsg(0x90, 0x2C, 0x0);
-    }
 };
