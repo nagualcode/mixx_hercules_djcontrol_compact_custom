@@ -11,7 +11,7 @@ setting.</description>
     </info>
     <controller id="DJControl">
         <scriptfiles>
-            <file functionprefix="HercDJCompact" filename="djcontrol.js"/>
+            <file functionprefix="HercDJCompact" filename="HerculesDJControlCompactSearchMode.js"/>
         </scriptfiles>
         <controls>
             <control>
