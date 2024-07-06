@@ -1,4 +1,7 @@
 # mixx_hercules_djcontrol_compact_custom
+
+![Hercules DJControl Compact](./hercules-djcontrol-compact_top.jpg)
+
 ## Custom mappings for [Hercules DJControl Compact for MIXXX DJ Software](https://github.com/mixxxdj/mixxx)
 
 
