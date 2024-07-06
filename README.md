@@ -12,4 +12,4 @@ my custom mappings for hercules djcontrol compact for mixxer dj software
 
 install on:
 
-/Users/<user>/Library/Containers/org.mixxx.mixxx/Data/Library/Application Support/Mixxx/controllers/
+/Users/{user}/Library/Containers/org.mixxx.mixxx/Data/Library/Application Support/Mixxx/controllers/
