@@ -1,15 +1,24 @@
 # mixx_hercules_djcontrol_compact_custom
-my custom mappings for hercules djcontrol compact for mixxer dj software
-
-1 - press rec to enter track search mode where jog whells scroll the track list and cue botton add to its deck (mode btn plays audio pre listen)
+## Custom mappings for [Hercules DJControl Compact for MIXXX DJ Software](https://github.com/mixxxdj/mixxx)
 
 
-2 - scratch button toggles the screatch mode (no more autodj function)
+# Edited Controller Mapping for Hercules DJControl Compact
 
+## Features
 
-3 - mid knob controls high eq
+- **[Rec]:** Enter Search Track Mode. Use Jog Wheels to scroll and [CUE] to load track to deck.
+- **Med Knob:** Mapped to High EQ filter.
+- **[CUE] Buttons:** Mapped to on/off the headphone listen of its channels.
+- **Controller Starts in Scratch Mode**
 
 
 install on:
-
+```
 /Users/{user}/Library/Containers/org.mixxx.mixxx/Data/Library/Application Support/Mixxx/controllers/
+```
+
+To run MIXXX from terminal with controller log verbosity:
+
+```
+/Applications/Mixxx.app/Contents/MacOS/mixxx --controller-debug
+```

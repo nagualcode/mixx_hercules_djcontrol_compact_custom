@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <MixxxControllerPreset mixxxVersion="" schemaVersion="1">
     <info>
-        <name>djcontrol</name>
-        <author>Fred</author>
-        <description>Controller mapping for Hercules DJControl Compact.  Users
-who want the labeled "mid" knob to adjust high eq instead may use the MIDI
-wizard to remap it, or edit the controller XML file directly to change this
+        <name>HerculesDJControlCompactSearchMode</name>
+        <author>github.com/nagualcode/mixx_hercules_djcontrol_compact_custom</author>
+        <description>Edited Controller mapping for Hercules DJControl Compact. [Rec]: Enter Search Track Mode, 
+        use Jog Whells to scroll and [CUE] to load track to deck. Med Knob is mapped to High Eq filter. [CUE] buttons are mapped to on/off 
+        the headphone liste of its chanells. Controller starts in Scratch Mode.
 setting.</description>
         <manual>hercules_djcontrol_compact</manual>
     </info>
