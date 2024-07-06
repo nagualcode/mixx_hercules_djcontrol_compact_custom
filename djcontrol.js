@@ -5,10 +5,11 @@ HercDJCompact = function() {
 HercDJCompact.init = function(id) {
     engine.setValue("[Master]", "num_samplers", 8);
 
-    this.scratch = false;
+    this.scratch = true;
     this.scratch_timer = [];
     this.scratch_timer_on = [];
     this.searchMode = false;
+    this.shiftPressed = false;
 
     engine.connectControl("[Recording]", "status", "HercDJCompact.OnRecordingStatusChange");
 
@@ -37,8 +38,14 @@ HercDJCompact.controls = {
         0x2D: { "name": "scratch_toggle", "channel": 1, "group": "[Master]" },
         0x2B: { "name": "rec_toggle", "channel": 1, "group": "[Master]" },
         0x22: { "name": "cue", "channel": 1, "group": "[Channel1]" },
-        0x52: { "name": "cue", "channel": 2, "group": "[Channel2]" }
+        0x52: { "name": "cue", "channel": 2, "group": "[Channel2]" },
+        0x2F: { "name": "shift", "channel": 1, "group": "[Master]" } // Added shift button mapping
     }
+};
+
+// Handle the shift button
+HercDJCompact.shift = function(group, control, value, status) {
+    this.shiftPressed = value > 0;
 };
 
 HercDJCompact.scratchToggle = function(group, control, value, status) {
@@ -105,7 +112,7 @@ HercDJCompact.jog_wheel = function(group, control, value, status) {
 };
 
 HercDJCompact.cue = function(group, control, value, status) {
-    print("Cue button pressed, control: " + control + ", value: " + value + ", searchMode: " + this.searchMode);
+    print("Cue button pressed, control: " + control + ", value: " + value + ", searchMode: " + this.searchMode + ", shiftPressed: " + this.shiftPressed);
 
     // Determine the group based on the control value
     if (control === 0x22) {
@@ -131,9 +138,13 @@ HercDJCompact.cue = function(group, control, value, status) {
         // Exit search mode after loading the track
         this.searchMode = false;
         print("Exiting search mode");
-    } else if (value > 0) {
+    } else if (value > 0 && this.shiftPressed) {
         print("Setting cue point, group: " + group);
         engine.setValue(group, "cue_default", value);
+    } else if (value > 0) {
+        print("Toggling headphone output, group: " + group);
+        var currentHeadphone = engine.getValue(group, "pfl");
+        engine.setValue(group, "pfl", !currentHeadphone);
     }
 };
 
