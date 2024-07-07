@@ -11,12 +11,17 @@ HercDJCompact.init = function(id) {
     this.searchMode = false;
     this.shiftPressed = false;
 
+    midi.sendShortMsg(0x90, 0x2D, 0x7F); // Turn on LED because scratch mode on
+
     // Tell controller to send midi to update knob and slider positions.
     midi.sendShortMsg(0xB0, 0x7F, 0x7F);
 
     // But the rate values get messed up, so reset them
     engine.setValue("[Channel1]", "rate_set_default", 1.0);
     engine.setValue("[Channel2]", "rate_set_default", 1.0);
+
+
+
 };
 
 HercDJCompact.shutdown = function() {
