@@ -52,9 +52,11 @@ HercDJCompact.scratchToggle = function(group, control, value, status) {
         if (this.scratch) {
             engine.scratchEnable(1, 256, 33 + 1 / 3, 1.0 / 8 * (0.500), (1.0 / 8) * (0.500) / 32);
             engine.scratchEnable(2, 256, 33 + 1 / 3, 1.0 / 8 * (0.500), (1.0 / 8) * (0.500) / 32);
+            midi.sendShortMsg(0x90, 0x2D, 0x7F); // Turn on LED
         } else {
             engine.scratchDisable(1);
             engine.scratchDisable(2);
+            midi.sendShortMsg(0x90, 0x2D, 0x00); // Turn off LED
         }
     }
 };
